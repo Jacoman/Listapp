@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_Ingredients">
+
+    <fragment
+        android:id="@+id/navigation_AddRecipe"
+        android:name="com.list.app.time.ui.home.AddRecipeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_addrecipe" />
+
+    <fragment
+        android:id="@+id/navigation_Ingredients"
+        android:name="com.list.app.time.ui.dashboard.IngredientsFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_ingredients" >
+        <action
+            android:id="@+id/action_navigation_Ingredients_to_navigation_AddIngredients"
+            app:destination="@id/navigation_AddIngredients" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_ViewRecipes"
+        android:name="com.list.app.time.ui.notifications.ViewRecipesFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_viewrecipes" />
+
+    <fragment
+        android:id="@+id/navigation_AddIngredients"
+        android:name="com.list.app.time.ui.dashboard.addIngredientsFragment"
+        android:label="title_addIngredients"
+        tools:layout="@layout/fragment_add_ingredients">
+        <action
+            android:id="@+id/action_navigation_AddIngredients_to_navigation_Ingredients"
+            app:destination="@id/navigation_Ingredients" />
+    </fragment>
+
+</navigation>
