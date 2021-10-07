@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.dashboard.IngredientsFragment"
-    tools:ignore="MissingDefaultResource"
-    android:orientation="vertical">
+    tools:ignore="MissingDefaultResource">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/recipeToolBar"
@@ -34,12 +34,20 @@
             android:textSize="35sp" />
     </androidx.appcompat.widget.Toolbar>
 
-    <ListView
-        android:id="@+id/recipeListView"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="3dp"
-        android:divider="@color/black"
-        android:dividerHeight="3dp"
-         />
+        android:layout_height="601dp"
+        android:fillViewport="true">
+
+        <ListView
+            android:id="@+id/recipeListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:divider="@color/black"
+            android:dividerHeight="3dp" />
+    </ScrollView>
+
+
 </LinearLayout>
