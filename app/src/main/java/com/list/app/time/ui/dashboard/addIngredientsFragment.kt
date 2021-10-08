@@ -36,14 +36,10 @@ class addIngredientsFragment : Fragment() {
         binding.SaveButton.setOnClickListener {
             var userEntry = binding.ingedientEditText.text.toString()
             userEntry = userEntry.replace("'","''")//replaces ' with '' due to sql constraints
-            db?.execSQL("INSERT into " +entry+"  VALUES('"+userEntry+ "')")
+            db?.execSQL("INSERT into " +entry+" (RNAME) VALUES('"+userEntry+ "')")
             binding.ingedientEditText.setText("")
             binding.ingedientEditText.requestFocus()
             Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()
-           // view?.findNavController()
-              //  ?.navigate(R.id.action_navigation_AddIngredients_to_navigation_Ingredients)
-
-
         }
 
         return root

@@ -35,7 +35,7 @@ class displayIngredientsFragment : Fragment() {
         cursor?.moveToFirst()
         if(cursor?.isAfterLast() == false){//only run loop if the table has contents
             do {
-                val data: String = cursor!!.getString(0)
+                val data: String = cursor!!.getString(1)
                 recipeList.add(data)
                 cursor.moveToNext()
 

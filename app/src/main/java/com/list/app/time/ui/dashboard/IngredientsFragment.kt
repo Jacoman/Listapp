@@ -56,8 +56,8 @@ class IngredientsFragment : Fragment() {
             submit.setOnClickListener(View.OnClickListener {
                 var userEntry = editT.text.toString()
                 userEntry = userEntry.replace("'","''")//replaces ' with '' due to sql constraints
-                db?.execSQL("CREATE TABLE `" + userEntry + "`( RNAME TEXT PRIMARY KEY )")
-                db?.execSQL("INSERT into Recipe VALUES('"+userEntry+ "')")
+                db?.execSQL("CREATE TABLE IF NOT EXISTS `" + userEntry + "`(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
+                db?.execSQL("INSERT into Recipe (RNAME) VALUES ('"+userEntry+ "')")
                 getActivity()?.getIntent()?.putExtra("key", userEntry)
 
                 editT.setText("")
@@ -74,7 +74,7 @@ class IngredientsFragment : Fragment() {
         cursor?.moveToFirst()
         if(cursor?.isAfterLast() == false){//only run loop if the table has contents
             do {
-                val data: String = cursor!!.getString(0)
+                val data: String = cursor!!.getString(1)
                 recipeList.add(data)
                 cursor.moveToNext()
 

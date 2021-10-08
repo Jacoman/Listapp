@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class Dbhelper(context: Context) : SQLiteOpenHelper(context, "RECIPES",null,1) {
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE Recipe(RNAME TEXT PRIMARY KEY)")
+        db?.execSQL("CREATE TABLE Recipe(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
 
     }
 
