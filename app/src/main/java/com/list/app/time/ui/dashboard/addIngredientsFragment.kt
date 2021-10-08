@@ -1,6 +1,5 @@
 package com.list.app.time.ui.dashboard
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ class addIngredientsFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    @SuppressLint("Recycle")
     override fun onCreateView(
 
         inflater: LayoutInflater,
@@ -36,7 +34,7 @@ class addIngredientsFragment : Fragment() {
         binding.SaveButton.setOnClickListener {
             var userEntry = binding.ingedientEditText.text.toString()
             userEntry = userEntry.replace("'","''")//replaces ' with '' due to sql constraints
-            db?.execSQL("INSERT into " +entry+" (RNAME) VALUES('"+userEntry+ "')")
+            db?.execSQL("INSERT into `" +entry+"` (RNAME) VALUES('"+userEntry+ "')")
             binding.ingedientEditText.setText("")
             binding.ingedientEditText.requestFocus()
             Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()

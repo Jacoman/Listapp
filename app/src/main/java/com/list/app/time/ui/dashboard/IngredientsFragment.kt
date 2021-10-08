@@ -57,6 +57,7 @@ class IngredientsFragment : Fragment() {
                 var userEntry = editT.text.toString()
                 userEntry = userEntry.replace("'","''")//replaces ' with '' due to sql constraints
                 db?.execSQL("CREATE TABLE IF NOT EXISTS `" + userEntry + "`(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
+
                 db?.execSQL("INSERT into Recipe (RNAME) VALUES ('"+userEntry+ "')")
                 getActivity()?.getIntent()?.putExtra("key", userEntry)
 
