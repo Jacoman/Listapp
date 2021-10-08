@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_navigation_Ingredients_to_navigation_AddIngredients"
             app:destination="@id/navigation_AddIngredients" />
+        <action
+            android:id="@+id/action_navigation_Ingredients_to_navigation_DisplayIngredients"
+            app:destination="@id/navigation_DisplayIngredients" />
     </fragment>
 
     <fragment
@@ -36,5 +39,11 @@
             android:id="@+id/action_navigation_AddIngredients_to_navigation_Ingredients"
             app:destination="@id/navigation_Ingredients" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_DisplayIngredients"
+        android:name="com.list.app.time.ui.dashboard.displayIngredientsFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_display_ingredients" />
 
 </navigation>
