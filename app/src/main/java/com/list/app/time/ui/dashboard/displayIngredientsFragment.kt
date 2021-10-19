@@ -29,9 +29,10 @@ class displayIngredientsFragment : Fragment() {
         val db = helper?.readableDatabase
         val root: View = binding.root
         val mListView: ListView = binding.IngredientListView
-        val entry = getActivity()?.getIntent()?.getExtras()?.getString("key2")
+        var entry = getActivity()?.getIntent()?.getExtras()?.getString("key2")
+        entry = entry?.replace("'","''")
         val recipeList: MutableList<String> = ArrayList()
-        val cursor = db?.rawQuery("SELECT * FROM " + entry, null)
+        val cursor = db?.rawQuery("SELECT * FROM `" + entry+"`", null)
         cursor?.moveToFirst()
         if(cursor?.isAfterLast() == false){//only run loop if the table has contents
             do {

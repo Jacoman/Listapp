@@ -2,6 +2,7 @@ package com.list.app.time.ui.dashboard
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +14,6 @@ import androidx.navigation.findNavController
 import com.list.app.time.Dbhelper
 import com.list.app.time.R
 import com.list.app.time.databinding.FragmentIngredientsBinding
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -72,6 +63,13 @@ class IngredientsFragment : Fragment() {
 
         val recipeList: MutableList<String> = ArrayList()
         val cursor = db?.rawQuery("SELECT * FROM  Recipe", null)
+        printData(cursor!!,recipeList,mListView)
+
+        cursor?.close()
+        return root
+    }
+
+    fun printData(cursor: Cursor, recipeList: MutableList<String>, mListView: ListView){
         cursor?.moveToFirst()
         if(cursor?.isAfterLast() == false){//only run loop if the table has contents
             do {
@@ -89,10 +87,6 @@ class IngredientsFragment : Fragment() {
                 view?.findNavController()?.navigate(R.id.action_navigation_Ingredients_to_navigation_DisplayIngredients)
             }
         }
-
-        cursor?.close()
-        return root
-
     }
 
 

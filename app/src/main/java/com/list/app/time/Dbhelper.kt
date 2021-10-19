@@ -15,4 +15,6 @@ class Dbhelper(context: Context) : SQLiteOpenHelper(context, "RECIPES",null,1) {
         db?.execSQL("DROP TABLE IF EXISTS Recipe")
         onCreate(db)
     }
+
+
 }
