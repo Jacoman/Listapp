@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.dashboard.IngredientsFragment"
+    tools:context=".IngredientsFragment"
     tools:ignore="MissingDefaultResource">
 
     <androidx.appcompat.widget.Toolbar
@@ -37,7 +37,7 @@
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="601dp"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
         <ListView
