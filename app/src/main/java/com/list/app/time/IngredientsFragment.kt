@@ -79,10 +79,6 @@ class IngredientsFragment : Fragment() {
                             }
 
                         }
-                    //view?.findNavController()
-                  //      ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
-                    // Close dialog
-                    //dialog.dismiss()
                     }
 
                 else {

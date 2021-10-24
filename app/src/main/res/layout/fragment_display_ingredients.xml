@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".IngredientsFragment"
     tools:ignore="MissingDefaultResource"
+    android:gravity="center_horizontal|center_vertical"
     android:background="@color/tan"
     >
 
@@ -14,6 +15,7 @@
         android:id="@+id/recipeToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toTopOf="parent"
         android:background="@color/grey1"
         android:minHeight="?actionBarSize"
         android:theme="?actionBarTheme">
@@ -22,7 +24,7 @@
             android:id="@+id/recipeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ingredients"
+            android:text="@string/Ingredient_label"
             android:textColor="@color/white" />
 
         <Button
@@ -31,16 +33,20 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@color/orange2"
-            android:text="+"
+            android:text="@string/plus_button_text"
             android:textColor="@color/white"
             android:textSize="35sp" />
     </androidx.appcompat.widget.Toolbar>
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_width="413dp"
+        android:layout_height="664dp"
+        android:fillViewport="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recipeToolBar">
 
         <ListView
             android:id="@+id/IngredientListView"
@@ -50,6 +56,21 @@
             android:divider="@color/black"
             android:dividerHeight="3dp" />
     </ScrollView>
-
-
-</LinearLayout>
+    <ImageView
+        android:id="@+id/myimg"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:foregroundGravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="5dp"
+        android:alpha="0.5"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ic_artboard_1"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

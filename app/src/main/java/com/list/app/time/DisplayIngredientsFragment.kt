@@ -69,8 +69,7 @@ class displayIngredientsFragment : Fragment() {
                             editT.setText("")
                         }
                     } else {
-                        userEntry2 =
-                            userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
+                        userEntry2 = userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
                         db?.execSQL("INSERT OR IGNORE into `" + entry + "` (RNAME) VALUES('" + userEntry2 + "')")
                         editT.setText("")
                     }
