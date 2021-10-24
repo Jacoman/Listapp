@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/tan"
     tools:context=".IngredientsFragment"
     tools:ignore="MissingDefaultResource">
 
@@ -12,7 +13,7 @@
         android:id="@+id/recipeToolBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="@color/grey1"
         android:minHeight="?actionBarSize"
         android:theme="?actionBarTheme">
 

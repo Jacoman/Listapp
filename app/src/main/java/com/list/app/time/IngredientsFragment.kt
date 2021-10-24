@@ -23,17 +23,20 @@ class IngredientsFragment : Fragment() {
     private val binding get() = _binding!!
 
     @SuppressLint("WrongConstant")
-    val helper = activity?.let { Dbhelper(it.applicationContext) }
+    val helper = activity?.let { Dbhelper(this.requireContext()) }
     val db = helper?.readableDatabase
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val helper = activity?.let { Dbhelper(it.applicationContext) }
+        val helper = activity?.let { Dbhelper(this.requireContext()) }
         val db = helper?.readableDatabase
          _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val mListView: ListView = binding.recipeListView
+        val recipeList: MutableList<String> = ArrayList()
+        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, recipeList)
         binding.addRecipeButton.setOnClickListener() {
             val dialog = Dialog(requireActivity())
             dialog.setContentView(R.layout.pop_up)
@@ -45,23 +48,43 @@ class IngredientsFragment : Fragment() {
             )
             submit.setOnClickListener(View.OnClickListener {
                 var userEntry = editT.text.toString()
-                userEntry = userEntry.replace("'","''")//replaces ' with '' due to sql constraints
-                db?.execSQL("CREATE TABLE IF NOT EXISTS `" + userEntry + "`(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
+                if(recipeList.size >= 1){
+                        if(recipeList.contains(userEntry)){
+                            Toast.makeText(activity, "Duplicate Entry, Try Again!", Toast.LENGTH_LONG).show()
+                            System.out.println("duplicate")
+                            System.out.println(recipeList.size - 1)
+                            dialog.dismiss()
+                        }
+                        else
+                        {
+                            helper!!.insertData(db,userEntry)
+                            getActivity()?.getIntent()?.putExtra("key", userEntry)
 
-                db?.execSQL("INSERT into Recipe (RNAME) VALUES ('"+userEntry+ "')")
-                getActivity()?.getIntent()?.putExtra("key", userEntry)
+                            editT.setText("")
+                            Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()
+                            view?.findNavController()
+                                ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
+                            // Close dialog
+                            dialog.dismiss()
 
-                editT.setText("")
-                Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()
-                view?.findNavController()?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
-                // Close dialog
-                dialog.dismiss()
+                        }
+                    }
+
+                else {
+                    helper!!.insertData(db,userEntry)
+
+                    getActivity()?.getIntent()?.putExtra("key", userEntry)
+
+                    editT.setText("")
+                    Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()
+                    view?.findNavController()
+                        ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
+                    // Close dialog
+                    dialog.dismiss()
+                }
+
             })
         }
-        val mListView: ListView = binding.recipeListView
-
-        val recipeList: MutableList<String> = ArrayList()
-        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, recipeList)
         val cursor = db?.rawQuery("SELECT * FROM  Recipe", null)
         printData(cursor!!,recipeList,mListView,arrayAdapter)
         mListView.setOnItemLongClickListener { parent, view, position, id ->
@@ -76,17 +99,9 @@ class IngredientsFragment : Fragment() {
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
             )
             submit.setOnClickListener(View.OnClickListener {
-                db?.execSQL("DELETE FROM Recipe WHERE RNAME = '" + selectedObject + "'")
-                db?.execSQL("DROP TABLE `" + selectedObject +"`")
-
-
                 Toast.makeText(activity, "Recipe Deleted", Toast.LENGTH_LONG).show()
-                selectedObject = selectedObject.replace("''","'")
-                arrayAdapter.remove(selectedObject)
-                recipeList.remove(selectedObject)
-                arrayAdapter.notifyDataSetChanged()
 
-                // Close dialog
+                helper?.deleteData(selectedObject, db, arrayAdapter,recipeList)
                 dialog.dismiss()
             })
 

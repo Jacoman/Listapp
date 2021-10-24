@@ -11,7 +11,7 @@ import com.list.app.time.databinding.FragmentAddIngredientsBinding
 
 class addIngredientsFragment : Fragment() {
     private var _binding: FragmentAddIngredientsBinding? = null
-    val helper = activity?.let { Dbhelper(it.applicationContext) }
+    val helper = activity?.let { Dbhelper(this.requireContext()) }
     var db = helper?.readableDatabase
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,7 +28,7 @@ class addIngredientsFragment : Fragment() {
 
         val entry = getActivity()?.getIntent()?.getExtras()?.getString("key")
         System.out.println(entry)
-        val helper = activity?.let { Dbhelper(it.applicationContext) }
+        val helper = activity?.let { Dbhelper(this.requireContext()) }
         val db = helper?.readableDatabase
         binding.SaveButton.setOnClickListener {
             var userEntry = binding.ingedientEditText.text.toString()

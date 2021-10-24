@@ -28,7 +28,7 @@ class displayIngredientsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDisplayIngredientsBinding.inflate(inflater, container, false)
-        val helper = activity?.let { Dbhelper(it.applicationContext) }
+        val helper = activity?.let { Dbhelper(this.requireContext()) }
         val db = helper?.readableDatabase
         val root: View = binding.root
         val mListView: ListView = binding.IngredientListView

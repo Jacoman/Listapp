@@ -3,42 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/tan"
+    android:paddingLeft="20dp"
+    android:paddingTop="40dp"
+    android:paddingRight="20dp"
+    android:paddingBottom="40dp">
 
 
     <TextView
         android:id="@+id/RecipeText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Enter A Recipe Name!"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/Redit1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="88dp"
-        app:layout_constraintBottom_toTopOf="@+id/Redit1"/>
+        tools:layout_editor_absoluteY="88dp" />
 
 
     <EditText
         android:id="@+id/Redit1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:hint="Enter A Name!"
-        app:layout_constraintEnd_toEndOf="@id/RecipeText1"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="@id/RecipeText1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RecipeText1">
 
     </EditText>
 
     <Button
-    android:id="@+id/RecipeButton1"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Submit"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/Redit1"/>
-
+        android:id="@+id/RecipeButton1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@color/orange1"
+        android:textColor="@color/white"
+        android:text="Submit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Redit1" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
