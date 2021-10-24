@@ -58,32 +58,57 @@ class IngredientsFragment : Fragment() {
                         else
                         {
                             helper!!.insertData(db,userEntry)
-                            getActivity()?.getIntent()?.putExtra("key", userEntry)
+                            //getActivity()?.getIntent()?.putExtra("key", userEntry)
 
                             editT.setText("")
                             Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()
-                            view?.findNavController()
-                                ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
-                            // Close dialog
-                            dialog.dismiss()
+                            dialog.setContentView(R.layout.addingredientspopup)
+                            val editR: EditText = dialog.findViewById(R.id.Redit2)
+                            val addB: Button = dialog.findViewById(R.id.AddButton)
+                            val savB: Button = dialog.findViewById(R.id.SaveButton)
+                            addB.setOnClickListener(){
+                                var userEntry2 = editR.text.toString()
+                                userEntry2 = userEntry2.replace("'","''")//replaces ' with '' due to sql constraints
+                                db?.execSQL("INSERT into `" +userEntry+"` (RNAME) VALUES('"+userEntry2+ "')")
+                                editR.setText("")
+                            }
+                            savB.setOnClickListener(){
+                                dialog.dismiss()
+                                view?.findNavController()?.navigate(R.id.action_navigation_Ingredients_to_navigation_Ingredients)
+                            }
 
                         }
+                    //view?.findNavController()
+                  //      ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
+                    // Close dialog
+                    //dialog.dismiss()
                     }
 
                 else {
-                    helper!!.insertData(db,userEntry)
-
-                    getActivity()?.getIntent()?.putExtra("key", userEntry)
+                    helper!!.insertData(db, userEntry)
+                    //getActivity()?.getIntent()?.putExtra("key", userEntry)
 
                     editT.setText("")
                     Toast.makeText(activity, "Recipe Added", Toast.LENGTH_LONG).show()
-                    view?.findNavController()
-                        ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
-                    // Close dialog
-                    dialog.dismiss()
+                    dialog.setContentView(R.layout.addingredientspopup)
+                    val editR: EditText = dialog.findViewById(R.id.Redit2)
+                    val addB: Button = dialog.findViewById(R.id.AddButton)
+                    val savB: Button = dialog.findViewById(R.id.SaveButton)
+                    addB.setOnClickListener() {
+                        var userEntry2 = editR.text.toString()
+                        userEntry2 =
+                            userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
+                        db?.execSQL("INSERT into `" + userEntry + "` (RNAME) VALUES('" + userEntry2 + "')")
+                        editR.setText("")
+                    }
+                    savB.setOnClickListener() {
+                        dialog.dismiss()
+                        view?.findNavController()
+                            ?.navigate(R.id.action_navigation_Ingredients_to_navigation_Ingredients)
+                    }
                 }
 
-            })
+                })
         }
         val cursor = db?.rawQuery("SELECT * FROM  Recipe", null)
         printData(cursor!!,recipeList,mListView,arrayAdapter)
