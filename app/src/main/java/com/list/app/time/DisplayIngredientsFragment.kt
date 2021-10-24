@@ -65,13 +65,13 @@ class displayIngredientsFragment : Fragment() {
                             dialog.dismiss()
                         } else {
                             userEntry2 = userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
-                            db?.execSQL("INSERT into `" + entry + "` (RNAME) VALUES('" + userEntry2 + "')")
+                            db?.execSQL("INSERT OR IGNORE into `" + entry + "` (RNAME) VALUES('" + userEntry2 + "')")
                             editT.setText("")
                         }
                     } else {
                         userEntry2 =
                             userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
-                        db?.execSQL("INSERT into `" + entry + "` (RNAME) VALUES('" + userEntry2 + "')")
+                        db?.execSQL("INSERT OR IGNORE into `" + entry + "` (RNAME) VALUES('" + userEntry2 + "')")
                         editT.setText("")
                     }
                     save.setOnClickListener() {

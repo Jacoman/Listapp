@@ -70,7 +70,7 @@ class IngredientsFragment : Fragment() {
                                 var userEntry2 = editR.text.toString()
                                 userEntry = userEntry.replace("'","''")
                                 userEntry2 = userEntry2.replace("'","''")//replaces ' with '' due to sql constraints
-                                db?.execSQL("INSERT into `" +userEntry+"` (RNAME) VALUES('"+userEntry2+ "')")
+                                db?.execSQL("INSERT OR IGNORE INTO `" +userEntry+"` (RNAME) VALUES('"+userEntry2+ "')")
                                 editR.setText("")
                             }
                             savB.setOnClickListener(){
@@ -98,7 +98,7 @@ class IngredientsFragment : Fragment() {
                     addB.setOnClickListener() {
                         var userEntry2 = editR.text.toString()
                         userEntry2 = userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
-                        db?.execSQL("INSERT into `" + userEntry + "` (RNAME) VALUES('" + userEntry2 + "')")
+                        db?.execSQL("INSERT OR IGNORE into `" + userEntry + "` (RNAME) VALUES('" + userEntry2 + "')")
                         editR.setText("")
                     }
                     savB.setOnClickListener() {

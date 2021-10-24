@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 
 class Dbhelper(context: Context) : SQLiteOpenHelper(context, "RECIPES",null,1) {
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL("CREATE TABLE Recipe(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
+        db?.execSQL("CREATE TABLE Recipe(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT UNIQUE)")
 
     }
 
@@ -18,8 +18,8 @@ class Dbhelper(context: Context) : SQLiteOpenHelper(context, "RECIPES",null,1) {
     }
     fun insertData(db: SQLiteDatabase?, userEntry: String){
         val userEntry = userEntry.replace("'", "''")//replaces ' with '' due to sql constraints
-        db?.execSQL("CREATE TABLE `" + userEntry + "`(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
-        db?.execSQL("INSERT into Recipe (RNAME) VALUES ('" + userEntry + "')")
+        db?.execSQL("CREATE TABLE `" + userEntry + "`(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT UNIQUE)")
+        db?.execSQL("INSERT OR IGNORE into Recipe (RNAME) VALUES ('" + userEntry + "')")
     }
     fun deleteData(selectedObject: String, db: SQLiteDatabase?, arrayAdapter: ArrayAdapter<String>, recipeList: MutableList<String>){
         db?.execSQL("DELETE FROM Recipe WHERE RNAME = '" + selectedObject + "'")
