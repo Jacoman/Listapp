@@ -17,14 +17,14 @@ class Dbhelper(context: Context) : SQLiteOpenHelper(context, "RECIPES",null,1) {
         onCreate(db)
     }
     fun insertData(db: SQLiteDatabase?, userEntry: String){
-        userEntry.replace("'", "''")//replaces ' with '' due to sql constraints
+        val userEntry = userEntry.replace("'", "''")//replaces ' with '' due to sql constraints
         db?.execSQL("CREATE TABLE IF NOT EXISTS `" + userEntry + "`(ID INTEGER PRIMARY KEY AUTOINCREMENT, RNAME TEXT)")
         db?.execSQL("INSERT into Recipe (RNAME) VALUES ('" + userEntry + "')")
     }
     fun deleteData(selectedObject: String, db: SQLiteDatabase?, arrayAdapter: ArrayAdapter<String>, recipeList: MutableList<String>){
         db?.execSQL("DELETE FROM Recipe WHERE RNAME = '" + selectedObject + "'")
         db?.execSQL("DROP TABLE `" + selectedObject +"`")
-        selectedObject.replace("''","'")
+        val selectedObject = selectedObject.replace("''","'")
         arrayAdapter.remove(selectedObject)
         recipeList.remove(selectedObject)
         arrayAdapter.notifyDataSetChanged()

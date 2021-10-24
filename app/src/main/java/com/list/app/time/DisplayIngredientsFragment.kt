@@ -42,7 +42,7 @@ class displayIngredientsFragment : Fragment() {
                 cursor.moveToNext()
 
             } while (!cursor?.isAfterLast()!!)
-
+        }
             binding.addRecipeButton2.setOnClickListener() {
                 System.out.println("button clicked")
                 val dialog = Dialog(requireActivity())
@@ -82,7 +82,7 @@ class displayIngredientsFragment : Fragment() {
 
                 }
             }
-        }
+
             val arrayAdapter = ArrayAdapter(requireActivity(), R.layout.simple_list_item_1, recipeList)
             mListView.adapter = arrayAdapter
 
