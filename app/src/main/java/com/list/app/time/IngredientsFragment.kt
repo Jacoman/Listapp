@@ -68,6 +68,7 @@ class IngredientsFragment : Fragment() {
                             val savB: Button = dialog.findViewById(R.id.SaveButton)
                             addB.setOnClickListener(){
                                 var userEntry2 = editR.text.toString()
+                                userEntry = userEntry.replace("'","''")
                                 userEntry2 = userEntry2.replace("'","''")//replaces ' with '' due to sql constraints
                                 db?.execSQL("INSERT into `" +userEntry+"` (RNAME) VALUES('"+userEntry2+ "')")
                                 editR.setText("")
@@ -96,8 +97,7 @@ class IngredientsFragment : Fragment() {
                     val savB: Button = dialog.findViewById(R.id.SaveButton)
                     addB.setOnClickListener() {
                         var userEntry2 = editR.text.toString()
-                        userEntry2 =
-                            userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
+                        userEntry2 = userEntry2.replace("'", "''")//replaces ' with '' due to sql constraints
                         db?.execSQL("INSERT into `" + userEntry + "` (RNAME) VALUES('" + userEntry2 + "')")
                         editR.setText("")
                     }

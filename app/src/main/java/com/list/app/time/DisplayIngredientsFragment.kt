@@ -98,7 +98,7 @@ class displayIngredientsFragment : Fragment() {
                     WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
                 )
                 submit.setOnClickListener(View.OnClickListener {
-                    db?.execSQL("DELETE FROM " + entry +" WHERE RNAME = '" + selectedObject + "'")
+                    db?.execSQL("DELETE FROM `" + entry +"` WHERE RNAME = '" + selectedObject + "'")
 
 
                     Toast.makeText(activity, "Recipe Deleted", Toast.LENGTH_LONG).show()
