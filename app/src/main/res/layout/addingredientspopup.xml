@@ -16,21 +16,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Enter A Recipe Name!"
+        android:text="Add Ingredients!"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/Redit1"
+        app:layout_constraintBottom_toTopOf="@+id/Redit2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="88dp" />
 
 
     <EditText
-        android:id="@+id/Redit1"
+        android:id="@+id/Redit2"
         android:layout_width="400dp"
         android:layout_height="match_parent"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:hint="Enter A Name!"
+        android:hint="Enter An Ingredient!"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RecipeText1">
@@ -38,15 +38,33 @@
     </EditText>
 
     <Button
-        android:id="@+id/RecipeButton1"
-        android:layout_width="200dp"
+        android:id="@+id/AddButton"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:background="@color/orange1"
+        android:text="Add"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:gravity="center"
         android:textColor="@color/white"
-        android:text="Submit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Redit1" />
+        app:layout_constraintStart_toStartOf="@id/Redit2"
+        app:layout_constraintTop_toBottomOf="@+id/Redit2" />
+
+    <Button
+        android:id="@+id/SaveButton"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@color/orange1"
+        android:layout_marginRight="32dp"
+        android:text="Save"
+        android:layout_marginLeft="32dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/Redit2"
+        app:layout_constraintTop_toBottomOf="@id/Redit2"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

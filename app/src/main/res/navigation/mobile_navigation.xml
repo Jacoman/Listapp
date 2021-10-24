@@ -5,11 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_Ingredients">
 
-    <fragment
-        android:id="@+id/navigation_AddRecipe"
-        android:name="com.list.app.time.AddRecipeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_addrecipe" />
 
     <fragment
         android:id="@+id/navigation_Ingredients"
@@ -22,6 +17,9 @@
         <action
             android:id="@+id/action_navigation_Ingredients_to_navigation_DisplayIngredients"
             app:destination="@id/navigation_DisplayIngredients" />
+        <action
+        android:id="@+id/action_navigation_Ingredients_to_navigation_Ingredients"
+        app:destination="@id/navigation_Ingredients" />
     </fragment>
 
 
@@ -39,6 +37,12 @@
         android:id="@+id/navigation_DisplayIngredients"
         android:name="com.list.app.time.displayIngredientsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_display_ingredients" />
+        tools:layout="@layout/fragment_display_ingredients">
+        <action
+            android:id="@+id/action_display_ingredients_to_display_ingredients"
+            app:destination="@id/navigation_DisplayIngredients" />
+    </fragment>
+
+
 
 </navigation>
