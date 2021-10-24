@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Enter A Recipe Name!"
+        android:text="Enter Recipes"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Redit1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="16dp"
         android:gravity="center"
-        android:hint="Enter A Name!"
+        android:hint="Enter a recipe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RecipeText1">
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:background="@color/orange1"
         android:textColor="@color/white"
-        android:text="Submit"
+        android:text="@string/Submit_button_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Redit1" />

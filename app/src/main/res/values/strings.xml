@@ -1,8 +1,21 @@
 <resources>
-    <string name="app_name">Listapp</string>
+    <string name="app_name">Listzilla</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Ingredient_label">Ingredients</string>
+    <string name="Recipes_label">Recipes</string>
+    <string name="plus_button_text">+</string>
+    <string name="Ingredient_popup_label">Enter Ingredients!</string>
+    <string name="Ingredient_popup_preview">Enter An Ingredient!</string>
+    <string name="Add_button_text">Add</string>
+    <string name="Recipe_popup_label">Enter Ingredients!</string>
+    <string name="Recipe_popup_preview">Enter An Ingredient!</string>
+    <string name="Submit_button_text">Add</string>
+    <string name="Save_button_text">Save</string>
+    <string name="delete_label">Are you sure you would like to delete?</string>
+    <string name="Delete_button_text">Delete</string>
+
 </resources>

@@ -12,9 +12,6 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_ingredients" >
         <action
-            android:id="@+id/action_navigation_Ingredients_to_navigation_AddIngredients"
-            app:destination="@id/navigation_AddIngredients" />
-        <action
             android:id="@+id/action_navigation_Ingredients_to_navigation_DisplayIngredients"
             app:destination="@id/navigation_DisplayIngredients" />
         <action
@@ -22,16 +19,6 @@
         app:destination="@id/navigation_Ingredients" />
     </fragment>
 
-
-    <fragment
-        android:id="@+id/navigation_AddIngredients"
-        android:name="com.list.app.time.addIngredientsFragment"
-        android:label="title_addIngredients"
-        tools:layout="@layout/fragment_add_ingredients">
-        <action
-            android:id="@+id/action_navigation_AddIngredients_to_navigation_Ingredients"
-            app:destination="@id/navigation_Ingredients" />
-    </fragment>
 
     <fragment
         android:id="@+id/navigation_DisplayIngredients"

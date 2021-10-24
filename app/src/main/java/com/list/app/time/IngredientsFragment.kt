@@ -2,7 +2,6 @@ package com.list.app.time
 
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,19 +16,10 @@ import com.list.app.time.databinding.FragmentIngredientsBinding
 class IngredientsFragment : Fragment() {
 
     private var _binding: FragmentIngredientsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     @SuppressLint("WrongConstant")
-    val helper = activity?.let { Dbhelper(this.requireContext()) }
-    val db = helper?.readableDatabase
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val helper = activity?.let { Dbhelper(this.requireContext()) }
         val db = helper?.readableDatabase
          _binding = FragmentIngredientsBinding.inflate(inflater, container, false)
@@ -79,10 +69,6 @@ class IngredientsFragment : Fragment() {
                             }
 
                         }
-                    //view?.findNavController()
-                  //      ?.navigate(R.id.action_navigation_Ingredients_to_navigation_AddIngredients)
-                    // Close dialog
-                    //dialog.dismiss()
                     }
 
                 else {
@@ -111,7 +97,8 @@ class IngredientsFragment : Fragment() {
                 })
         }
         val cursor = db?.rawQuery("SELECT * FROM  Recipe", null)
-        printData(cursor!!,recipeList,mListView,arrayAdapter)
+        Dbhelper(this.requireContext()).printData(cursor!!, recipeList, mListView, arrayAdapter)
+        sendData(mListView)
         mListView.setOnItemLongClickListener { parent, view, position, id ->
             var selectedObject = mListView.getItemAtPosition(position).toString()
             selectedObject = selectedObject.replace("'","''")
@@ -125,8 +112,8 @@ class IngredientsFragment : Fragment() {
             )
             submit.setOnClickListener(View.OnClickListener {
                 Toast.makeText(activity, "Recipe Deleted", Toast.LENGTH_LONG).show()
-
-                helper?.deleteData(selectedObject, db, arrayAdapter,recipeList)
+                val rString = "Recipe"
+                helper?.deleteRowData(selectedObject, db, arrayAdapter,recipeList,rString)
                 dialog.dismiss()
             })
 
@@ -136,24 +123,14 @@ class IngredientsFragment : Fragment() {
         return root
     }
 
-    fun printData(cursor: Cursor, recipeList: MutableList<String>, mListView: ListView, arrayAdapter: ArrayAdapter<*>){
-        cursor?.moveToFirst()
-        if(cursor?.isAfterLast() == false){//only run loop if the table has contents
-            do {
-                val data: String = cursor!!.getString(1)
-                recipeList.add(data)
-                cursor.moveToNext()
-
-            } while (!cursor?.isAfterLast()!!)
-            //val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, recipeList)
-            mListView.adapter = arrayAdapter
+    fun sendData(mListView: ListView){
             mListView.setOnItemClickListener { parent, view, position, id ->
                 val selectedObject = mListView.getItemAtPosition(position).toString()
                 getActivity()?.getIntent()?.putExtra("key2", selectedObject)
                 view?.findNavController()?.navigate(R.id.action_navigation_Ingredients_to_navigation_DisplayIngredients)
             }
         }
-    }
+
 
 
 
