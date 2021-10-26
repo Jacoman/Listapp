@@ -57,7 +57,7 @@ class Dbhelper(context: Context) : SQLiteOpenHelper(context, "RECIPES",null,1) {
         savB.isEnabled = false
         addB.setOnClickListener {
             var userEntry2 = editR.text.toString()
-            insertIngredientdata(userEntry2, userEntry, editT, db)
+            insertIngredientdata(userEntry2, userEntry, editR, db)
             savB.isEnabled = true
         }
         savB.setOnClickListener {
