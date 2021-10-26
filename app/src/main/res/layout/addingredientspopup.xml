@@ -39,30 +39,28 @@
 
     <Button
         android:id="@+id/AddButton"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@color/orange1"
         android:text="@string/Add_button_text"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
         android:gravity="center"
+        android:paddingRight="20dp"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="@id/Redit2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Redit2" />
 
     <Button
         android:id="@+id/SaveButton"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:background="@color/orange1"
-        android:layout_marginRight="32dp"
+        android:paddingRight="20dp"
         android:text="@string/Save_button_text"
-        android:layout_marginLeft="32dp"
         android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="@id/Redit2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Redit2"
         />
 
