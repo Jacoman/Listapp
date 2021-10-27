@@ -76,7 +76,11 @@ class IngredientsFragment : Fragment() {
         cursor.close()
         return root
     }
-
+    /***********************************************************************************
+     * The sendData function is called when a user taps on a listview object, this
+     * function pulls the name from the object at the position tapped and sends it to
+     * DisplayIngredients fragment to be utilized to display the correct data.
+     ***********************************************************************************/
     private fun sendData(mListView: ListView){
             mListView.setOnItemClickListener { parent, view, position, id ->
                 val selectedObject = mListView.getItemAtPosition(position).toString()
