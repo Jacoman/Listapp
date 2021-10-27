@@ -44,19 +44,20 @@ class displayIngredientsFragment : Fragment() {
                 dialog.show()
                 add.setOnClickListener {
                     val userEntry2 = editT.text.toString()
-                    if (recipeList.size >= 1) {
-                        if (recipeList.contains(userEntry2)) {
-                            Toast.makeText(activity, "Duplicate Entry, Try Again!", Toast.LENGTH_LONG).show()
+                    if (recipeList.size >= 1) {//if array has elements in it
+                        if (recipeList.contains(userEntry2)) {//checks for duplicate entry
 
-                        } else {
+                        } else {//if not duplicate
                             save.isEnabled = true
                             Dbhelper(this.requireContext()).insertIngredientdata(userEntry2, entry.toString(), editT,db)
+                            Toast.makeText(activity, "Ingredient Added!", Toast.LENGTH_LONG).show()
                         }
-                    } else {
+                    } else {//if no items in array
                         save.isEnabled = true
                         Dbhelper(this.requireContext()).insertIngredientdata(userEntry2, entry.toString(), editT,db)
+                        Toast.makeText(activity, "Ingredient Added!", Toast.LENGTH_LONG).show()
                     }
-                    save.setOnClickListener {
+                    save.setOnClickListener {//close and refresh
                         dialog.dismiss()
                         view?.findNavController()
                             ?.navigate(com.list.app.time.R.id.action_display_ingredients_to_display_ingredients)
