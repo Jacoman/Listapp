@@ -31,15 +31,21 @@ class IngredientsFragment : Fragment() {
         )
         val recipeList: MutableList<String> = ArrayList()
         val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, recipeList)
+
+        /***********************************************************************************
+         * Displays pop up that calls the ingredient pop up funtion to insert data
+         * accordingly
+         ***********************************************************************************/
+
         binding.addRecipeButton.setOnClickListener {
             dialog.setContentView(R.layout.pop_up)
             val submit: Button = dialog.findViewById(R.id.RecipeButton1) as Button
             val editT: EditText = dialog.findViewById(R.id.Redit1)
             dialog.show()
             submit.setOnClickListener {
-                var userEntry = editT.text.toString()
+                val userEntry = editT.text.toString()
                 if (recipeList.size >= 1) {
-                    if (recipeList.contains(userEntry)) {
+                    if (recipeList.contains(userEntry)) {//duplicate checking
                         Toast.makeText(activity, "Duplicate Entry, Try Again!", Toast.LENGTH_LONG).show()
                         dialog.dismiss()
                     } else {
@@ -55,9 +61,14 @@ class IngredientsFragment : Fragment() {
 
             }
 
-        val cursor = db?.rawQuery("SELECT * FROM  Recipe", null)
-        Dbhelper(this.requireContext()).printData(cursor!!, recipeList, mListView, arrayAdapter)
+        val cursor = db?.rawQuery("SELECT * FROM  Recipe", null)//sets up cursor for printdata
+        helper!!.printData(cursor!!, recipeList, mListView, arrayAdapter)
         sendData(mListView)
+
+        /***********************************************************************************
+         * Pulls value from listview based on longclick, calls deletion function and
+         * deletes based on string pulled.
+         ***********************************************************************************/
         mListView.setOnItemLongClickListener { parent, view, position, id ->
             var selectedObject = mListView.getItemAtPosition(position).toString()
             selectedObject = selectedObject.replace("'","''")
