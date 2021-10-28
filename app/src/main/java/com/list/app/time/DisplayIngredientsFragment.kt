@@ -23,17 +23,22 @@ class displayIngredientsFragment : Fragment() {
         val db = helper?.readableDatabase
         val root: View = binding.root
         val mListView: ListView = binding.IngredientListView
-        val dialog = Dialog(requireActivity())
-        dialog.window?.setSoftInputMode(
+        val dialog = Dialog(requireActivity())//setting up dialog val
+        dialog.window?.setSoftInputMode(//dialog box visability
             WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
         )
         var entry = activity?.intent?.extras?.getString("key2")
         entry = entry?.replace("'","''")
-        var recipeList: MutableList<String> = ArrayList()
+        val recipeList = ArrayList<String>()
         val cursor = db?.rawQuery("SELECT * FROM `$entry`", null)
         val arrayAdapter = ArrayAdapter(requireActivity(), R.layout.simple_list_item_1, recipeList)
-        Dbhelper(this.requireContext()).printData(cursor!!,recipeList,mListView,arrayAdapter)
+        helper!!.printData(cursor!!,recipeList,mListView,arrayAdapter)
 
+
+        /***********************************************************************************
+         * Displays pop up that calls the ingredient pop up funtion to insert data
+         * accordingly
+         ***********************************************************************************/
             binding.addRecipeButton2.setOnClickListener {
                 println("button clicked")
                 dialog.setContentView(com.list.app.time.R.layout.addingredientspopup)
@@ -42,20 +47,28 @@ class displayIngredientsFragment : Fragment() {
                 val editT: EditText = dialog.findViewById(com.list.app.time.R.id.Redit2)
                 save.isEnabled = false
                 dialog.show()
+                var userEntry2: String
                 add.setOnClickListener {
-                    val userEntry2 = editT.text.toString()
-                    if (recipeList.size >= 1) {//if array has elements in it
+                    userEntry2 = editT.text.toString()
+                    if (recipeList.size > 0) {//if array has elements in it
                         if (recipeList.contains(userEntry2)) {//checks for duplicate entry
-
+                            println("dupilicate")//debugging
+                            Toast.makeText(activity, "Duplicate Entry, Try Again!", Toast.LENGTH_LONG).show()
+                            save.isEnabled = false
                         } else {//if not duplicate
+                            println("not duplicate")
                             save.isEnabled = true
-                            Dbhelper(this.requireContext()).insertIngredientdata(userEntry2, entry.toString(), editT,db)
+                            helper.insertIngredientdata(userEntry2, entry.toString(), editT,db)
                             Toast.makeText(activity, "Ingredient Added!", Toast.LENGTH_LONG).show()
+                            recipeList.add(userEntry2)//update list
                         }
                     } else {//if no items in array
+                        println("empty array")
                         save.isEnabled = true
-                        Dbhelper(this.requireContext()).insertIngredientdata(userEntry2, entry.toString(), editT,db)
+                        //Dbhelper(this.requireContext()).insertIngredientdata(userEntry2, entry.toString(), editT,db)
+                        helper.insertIngredientdata(userEntry2, entry.toString(), editT,db)
                         Toast.makeText(activity, "Ingredient Added!", Toast.LENGTH_LONG).show()
+                        recipeList.add(userEntry2)//update list
                     }
                     save.setOnClickListener {//close and refresh
                         dialog.dismiss()
@@ -66,6 +79,11 @@ class displayIngredientsFragment : Fragment() {
                 }
             }
 
+
+        /***********************************************************************************
+         * Pulls value from listview based on longclick, calls deletion function and
+         * deletes based on string pulled.
+         ***********************************************************************************/
             mListView.setOnItemLongClickListener { parent, view, position, id ->
                 var selectedObject = mListView.getItemAtPosition(position).toString()
                 selectedObject = selectedObject.replace("'","''")
@@ -74,14 +92,14 @@ class displayIngredientsFragment : Fragment() {
                 val submit: Button = dialog.findViewById(com.list.app.time.R.id.RecipeButton1) as Button
                 dialog.show()
                 submit.setOnClickListener {
-                    helper!!.deleteRowData(selectedObject, db, arrayAdapter, recipeList, entry.toString())
+                    helper.deleteRowData(selectedObject, db, arrayAdapter, recipeList, entry.toString())
                     Toast.makeText(activity, "Ingredient Deleted", Toast.LENGTH_LONG).show()
                     dialog.dismiss()
                 }
 
                 return@setOnItemLongClickListener true
             }
-        cursor!!.close()
+        cursor.close()
         return root
     }
 
