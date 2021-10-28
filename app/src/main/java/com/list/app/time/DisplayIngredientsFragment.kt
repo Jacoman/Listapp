@@ -55,6 +55,7 @@ class displayIngredientsFragment : Fragment() {
                             println("dupilicate")//debugging
                             Toast.makeText(activity, "Duplicate Entry, Try Again!", Toast.LENGTH_LONG).show()
                             save.isEnabled = false
+                            editT.setText("")
                         } else {//if not duplicate
                             println("not duplicate")
                             save.isEnabled = true
@@ -65,7 +66,6 @@ class displayIngredientsFragment : Fragment() {
                     } else {//if no items in array
                         println("empty array")
                         save.isEnabled = true
-                        //Dbhelper(this.requireContext()).insertIngredientdata(userEntry2, entry.toString(), editT,db)
                         helper.insertIngredientdata(userEntry2, entry.toString(), editT,db)
                         Toast.makeText(activity, "Ingredient Added!", Toast.LENGTH_LONG).show()
                         recipeList.add(userEntry2)//update list
