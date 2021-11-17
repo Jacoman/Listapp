@@ -2,4 +2,4 @@ Listzilla is an android application with persistent data allowing users to add R
 
 
 Future plans: To allow users to utilize their saved recipes by adding them to a shopping list, once added to a shopping list, the ingredients will be automatically added to it.
-Thus, saving users time by not having to consistently retype the same things on a grocery list each shoppigng trip.
+Thus, saving users time by not having to consistently retype the same things on a grocery list each shopping trip.
